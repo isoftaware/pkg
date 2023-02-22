@@ -1,6 +1,6 @@
 module github.com/isoftaware/pkg/log
 
-go 1.18
+go 1.17
 
 require (
 	github.com/bytedance/sonic v1.5.0
