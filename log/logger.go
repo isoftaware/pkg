@@ -45,7 +45,7 @@ func (lgr *logger) consumer() {
 		_ = lgr.output.Flush()
 
 		if err := recover(); err != nil {
-			fmt.Fprintf(os.Stderr, "[micro-log] logger.consumer recovered from panic, err: %v\n", err)
+			fmt.Fprintf(os.Stderr, "logger.consumer recovered from panic, err: %v\n", err)
 			go lgr.consumer()
 		}
 	}()
@@ -61,7 +61,7 @@ func (lgr *logger) consumer() {
 		case <-time.Tick(time.Second):
 			err := lgr.output.Flush()
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "[micro-log] failed to flush output buffer, err: %v\n", err)
+				fmt.Fprintf(os.Stderr, "failed to flush output buffer, err: %v\n", err)
 			}
 		}
 	}
@@ -89,7 +89,7 @@ func (lgr *logger) printLog(lg *log) {
 		key := lgr.genKey(lg.Time)
 		err := lgr.output.ResetFile(key)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "[micro-log] failed to reset output, key=%s, err: %v\n", key, err)
+			fmt.Fprintf(os.Stderr, "failed to reset output, key=%s, err: %v\n", key, err)
 		} else {
 			lgr.version = version
 		}
@@ -97,7 +97,7 @@ func (lgr *logger) printLog(lg *log) {
 
 	err := lgr.output.Writeln(lg.Dump())
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[micro-log] failed to print log to output, err: %v\n", err)
+		fmt.Fprintf(os.Stderr, "failed to print log to output, err: %v\n", err)
 	}
 }
 

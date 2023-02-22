@@ -55,7 +55,7 @@ func (o *output) ResetFile(key string) error {
 	fileName := o.file.Name()
 	err = o.file.Close()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "[micro-log] failed to close file %s, err: %v", fileName, err)
+		fmt.Fprintf(os.Stderr, "failed to close file %s, err: %v", fileName, err)
 	}
 
 	o.file = newFile
